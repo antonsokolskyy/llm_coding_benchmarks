@@ -34,7 +34,7 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 - **How it works**: A task is solved if the patch passes "fail-to-pass" (F2P) tests (the bug fix) and "pass-to-pass" (P2P) tests (no regressions).
 - **Why it is useful**: It tests repository-level reasoning, bug localization, and functional fix generation.
 - **Score Format**: `Resolved / Scheduled (Submitted)`.
-  - *Example*: `10 / 20 (15)` means 20 tasks were scheduled, the model has submitted 15 results before hitting a budget/call limit, and 10 were resolved correctly.
+  - *Example*: `10 / 20 (15)` means 20 tasks were scheduled, the model has submitted 15 non-empty results before hitting a budget/call limit, and 10 were resolved correctly.
 - **Dataset**:
   - **Multilingual**: We use SWE-bench Multilingual to test models on languages other than Python (as EvalPlus is Python-only). We use a subset of 20 instances (10 Ruby, 10 JavaScript).
     - **Ruby IDs**: `faker-ruby__faker-2705`, `faker-ruby__faker-2970`, `fastlane__fastlane-19207`, `fastlane__fastlane-19304`, `fastlane__fastlane-19765`, `fastlane__fastlane-20642`, `fastlane__fastlane-20958`, `fastlane__fastlane-20975`, `fastlane__fastlane-21857`, `fluent__fluentd-3328`
@@ -102,7 +102,7 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 | Model | Quant | Context | Resolved / Scheduled (Submitted) |
 | :--- | :--- | :--- | :--- |
 | devstral-small-2-24b-instruct-2512 | `Q4_K_XL` | 65536 | 3 / 10 (10) |
-| gpt-oss-20b | `MXFP4` | 65536 | 0 / 10 (10) |
+| gpt-oss-20b | `MXFP4` | 65536 | 0 / 10 (0) |
 | qwen3-coder-30b-a3b-instruct | `Q4_K_XL` | 65536 | 4 / 10 (10) |
 
 #### Cloud Models (OpenRouter)
