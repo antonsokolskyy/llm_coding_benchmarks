@@ -33,12 +33,14 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 - **SWE-bench**: A benchmark of real GitHub issues. It takes the model's patch and evaluates it in a Docker environment by running the repository's test suite.
 - **How it works**: A task is solved if the patch passes "fail-to-pass" (F2P) tests (the bug fix) and "pass-to-pass" (P2P) tests (no regressions).
 - **Why it is useful**: It tests repository-level reasoning, bug localization, and functional fix generation.
-- **Score Format**: `Resolved / Scheduled (Processed)`.
-  - *Example*: `10 / 20 (15)` means 20 tasks were scheduled, the model finished 15 before hitting a budget/call limit, and 10 were resolved correctly.
+- **Score Format**: `Resolved / Scheduled (Submitted)`.
+  - *Example*: `10 / 20 (15)` means 20 tasks were scheduled, the model has submitted 15 results before hitting a budget/call limit, and 10 were resolved correctly.
 - **Dataset**:
   - **Multilingual**: We use SWE-bench Multilingual to test models on languages other than Python (as EvalPlus is Python-only). We use a subset of 20 instances (10 Ruby, 10 JavaScript).
     - **Ruby IDs**: `faker-ruby__faker-2705`, `faker-ruby__faker-2970`, `fastlane__fastlane-19207`, `fastlane__fastlane-19304`, `fastlane__fastlane-19765`, `fastlane__fastlane-20642`, `fastlane__fastlane-20958`, `fastlane__fastlane-20975`, `fastlane__fastlane-21857`, `fluent__fluentd-3328`
     - **JS IDs**: `axios__axios-4731`, `axios__axios-4738`, `axios__axios-5316`, `axios__axios-5892`, `axios__axios-6539`, `babel__babel-13928`, `immutable-js__immutable-js-2005`, `immutable-js__immutable-js-2006`, `mrdoob__three.js-25687`, `mrdoob__three.js-26589`
+  - **Lite**: We use a subset of 10 instances of SWE-bench Lite dataset to test models on Python issues.
+    - **Python IDs**: `astropy__astropy-12907`, `astropy__astropy-14182`, `astropy__astropy-14365`, `astropy__astropy-14995`, `astropy__astropy-6938`, `astropy__astropy-7746`, `django__django-10914`, `django__django-10924`, `django__django-11001`, `django__django-11019`
 
 ---
 
@@ -55,7 +57,7 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 #### Cloud Models (OpenRouter)
 | Model | Context | Run Cost | Prompt Strict | Prompt Loose | Inst Strict | Inst Loose |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| claude-sonnet-4.5  | 1000000 | $3.177 | 86.9% | 90.0% | 91.0% | 93.2% |
+| anthropic/claude-sonnet-4.5  | 1000000 | $3.177 | 86.9% | 90.0% | 91.0% | 93.2% |
 | deepseek/deepseek-v3.2 | 163840 | $0.129 | 85.0% | 88.7% | 89.3% | 91.8% |
 | google/gemini-3-flash-preview | 1048576 | $0.528 | 91.1% | 92.6% | 93.9% | 95.1% |
 | openai/gpt-5.1-codex-mini | 400000 | $0.528 | 80.0% | 81.5% | 79.9% | 80.8% |
@@ -72,7 +74,7 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 #### Cloud Models (OpenRouter)
 | Model | Context | Run Cost | HumanEval | HumanEval+ | MBPP | MBPP+ |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| claude-sonnet-4.5 | 1000000 | $3.475 | 96.3% | 92.7% | 93.9% | 81.2% |
+| anthropic/claude-sonnet-4.5 | 1000000 | $3.475 | 96.3% | 92.7% | 93.9% | 81.2% |
 | deepseek/deepseek-v3.2 | 163840 | $0.168 | 90.2% | 86.0% | 88.1% | 72.0% |
 | google/gemini-3-flash-preview | 1048576 | $0.564 | 98.2% | 94.5% | 94.2% | 81.0% |
 | openai/gpt-5.1-codex-mini | 400000 | $0.358 | 87.2% | 86.0% | 88.1% | 74.6% |
@@ -80,20 +82,37 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 
 ### 3. SWE-bench Multilingual
 #### Local Models (LM Studio)
-| Model | Quant | Context | Resolved / Scheduled (Processed) |
+| Model | Quant | Context | Resolved / Scheduled (Submitted) |
 | :--- | :--- | :--- | :--- |
 | devstral-small-2-24b-instruct-2512 | `Q4_K_XL` | 65536 | 6 / 20 (19) |
 | gpt-oss-20b | `MXFP4` | 65536 | 0 / 20 (0) |
 | qwen3-coder-30b-a3b-instruct | `Q4_K_XL` | 65536 | 9 / 20 (20) |
 
 #### Cloud Models (OpenRouter)
-| Model | Context | Run Cost | Resolved / Scheduled (Processed) |
+| Model | Context | Run Cost | Resolved / Scheduled (Submitted) |
 | :--- | :--- | :--- | :--- |
-| claude-sonnet-4.5 | 1000000 | $8.461 | 5 / 20 (20) |
-| deepseek-v3.2 | 163840 | $2.739 | 1 / 20 (16) |
-| gemini-3-flash-preview | 1048576 | $2.115 | 5 / 20 (16) |
-| gpt-5.1-codex-mini | 400000 | $1.675 | 5 / 20 (14) |
-| grok-code-fast-1 | 256000 | $10.30 | 2 / 20 (5) |
+| anthropic/claude-sonnet-4.5 | 1000000 | $8.461 | 5 / 20 (20) |
+| deepseek/deepseek-v3.2 | 163840 | $2.739 | 1 / 20 (16) |
+| google/gemini-3-flash-preview | 1048576 | $2.115 | 5 / 20 (16) |
+| openai/gpt-5.1-codex-mini | 400000 | $1.675 | 5 / 20 (14) |
+| x-ai/grok-code-fast-1 | 256000 | $10.30 | 2 / 20 (5) |
+
+### SWE-bench Lite
+#### Local Models (LM Studio)
+| Model | Quant | Context | Resolved / Scheduled (Submitted) |
+| :--- | :--- | :--- | :--- |
+| devstral-small-2-24b-instruct-2512 | `Q4_K_XL` | 65536 | 3 / 10 (10) |
+| gpt-oss-20b | `MXFP4` | 65536 | 0 / 10 (10) |
+| qwen3-coder-30b-a3b-instruct | `Q4_K_XL` | 65536 | 4 / 10 (10) |
+
+#### Cloud Models (OpenRouter)
+| Model | Context | Run Cost | Resolved / Scheduled (Submitted) |
+| :--- | :--- | :--- | :--- |
+| anthropic/claude-sonnet-4.5 | 1000000 | $3.191 | 5 / 10 (9) |
+| deepseek/deepseek-v3.2 | 163840 | $0.811 | 0 / 10 (9) |
+| google/gemini-3-flash-preview | 1048576 | $0.685 | 5 / 10 (10) |
+| openai/gpt-5.1-codex-mini | 400000 | $0.436 | 4 / 10 (10) |
+| x-ai/grok-code-fast-1 | 256000 | $8.615 | 4 / 10 (10) |
 
 ---
 
