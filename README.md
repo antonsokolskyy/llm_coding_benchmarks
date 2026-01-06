@@ -61,6 +61,8 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 | deepseek/deepseek-v3.2 | 163840 | $0.129 | 85.0% | 88.7% | 89.3% | 91.8% |
 | google/gemini-3-flash-preview | 1048576 | $0.528 | 91.1% | 92.6% | 93.9% | 95.1% |
 | openai/gpt-5.1-codex-mini | 400000 | $0.528 | 80.0% | 81.5% | 79.9% | 80.8% |
+| openai/gpt-oss-120b | 131072 | $0.109 | 78.9% | 81.5% | 84.3% | 86.0% |
+| qwen/qwen3-coder-30b-a3b-instruct | 160000 | $0.062 | 81.9% | 85.0% | 87.3% | 89.6% |
 | x-ai/grok-code-fast-1 | 256000 | $1.366 | 84.5% | 88.9% | 89.3% | 92.2% |
 
 ### 2. EvalPlus (HumanEval & MBPP)
@@ -78,6 +80,8 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 | deepseek/deepseek-v3.2 | 163840 | $0.168 | 90.2% | 86.0% | 88.1% | 72.0% |
 | google/gemini-3-flash-preview | 1048576 | $0.564 | 98.2% | 94.5% | 94.2% | 81.0% |
 | openai/gpt-5.1-codex-mini | 400000 | $0.358 | 87.2% | 86.0% | 88.1% | 74.6% |
+| openai/gpt-oss-120b | 131072 | $0.167 | 51.2% | 50.0% | 78.0% | 64.0% |
+| qwen/qwen3-coder-30b-a3b-instruct | 160000 | $0.071 | 93.3% | 89.6% | 88.1% | 73.8% |
 | x-ai/grok-code-fast-1 | 256000 | $1.406 | 94.5% | 90.9% | 95.2% | 78.8% |
 
 ### 3. SWE-bench Multilingual
@@ -95,6 +99,8 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 | deepseek/deepseek-v3.2 | 163840 | $2.739 | 1 / 20 (16) |
 | google/gemini-3-flash-preview | 1048576 | $2.115 | 5 / 20 (16) |
 | openai/gpt-5.1-codex-mini | 400000 | $1.675 | 5 / 20 (14) |
+| openai/gpt-oss-120b | 131072 | $0.068 | 1 / 20 (2) |
+| qwen/qwen3-coder-30b-a3b-instruct | 160000 | $1.127 | 4 / 20 (19) |
 | x-ai/grok-code-fast-1 | 256000 | $10.30 | 2 / 20 (5) |
 
 ### SWE-bench Lite
@@ -112,6 +118,8 @@ This repository contains benchmarks for coding and instruction-following tasks. 
 | deepseek/deepseek-v3.2 | 163840 | $0.811 | 0 / 10 (9) |
 | google/gemini-3-flash-preview | 1048576 | $0.685 | 5 / 10 (10) |
 | openai/gpt-5.1-codex-mini | 400000 | $0.436 | 4 / 10 (10) |
+| openai/gpt-oss-120b | 131072 | $0.020 | 1 / 10 (1) |
+| qwen/qwen3-coder-30b-a3b-instruct | 160000 | $0.239 | 3 / 10 (10) |
 | x-ai/grok-code-fast-1 | 256000 | $8.615 | 4 / 10 (10) |
 
 ---
